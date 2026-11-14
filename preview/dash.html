@@ -1,0 +1,32 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preload" href="fonts/PretendardVariable.woff2" as="font" type="font/woff2" crossorigin><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="icon" href="favicon-32.png" sizes="32x32"><link rel="manifest" href="site.webmanifest"><title>현황판 — 연구 관제실</title></head><body><p>현황판은 한 장으로 합쳐졌습니다 — <a href="index.html#view=dash">연구 관제실</a></p></body>
+<script>
+
+(function(){
+"use strict";
+var KIND="dash";
+var raw=String(location.hash||"").replace(/^#/,"");
+function q(o){
+  var p=[];
+  for(var k in o)if(o[k])p.push(encodeURIComponent(k)+"="+encodeURIComponent(o[k]));
+  return "index.html#"+p.join("&");
+}
+var to;
+if(KIND==="project"){
+  var nm=raw; try{ nm=decodeURIComponent(raw) }catch(e){}
+  to=q({view:"home",p:nm});
+}else if(KIND==="cases"){
+  to=q(/^C\d+$/.test(raw)?{view:"cases",c:raw}:{view:"cases"});
+}else if(KIND==="dash"){
+  to=q(/^m-/.test(raw)?{view:"cases",m:raw.slice(2)}:{view:"cases"});
+}else{
+  /* 관제실 — `repo=`·`pc=`·`view=metrics` 를 그대로 옮긴다 */
+  var p=new URLSearchParams(raw), o={view:"inbox"};
+  if(p.get("view")==="metrics")o.sub="metrics";
+  if(p.get("repo"))o.repo=p.get("repo");
+  if(p.get("pc"))o.pc=p.get("pc");
+  to=q(o);
+}
+location.replace(to);
+})();
+</script></html>
