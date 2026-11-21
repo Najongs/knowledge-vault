@@ -1,0 +1,14 @@
+{
+ "registry_schema": 1,
+ "name": "지식의 우주 — 볼트 레지스트리",
+ "updated": "2026-09-16",
+ "vaults": [
+  {
+   "id": "najongs",
+   "name": "지식의 창고",
+   "owner": "Najongs",
+   "feed": "https://najongs.github.io/knowledge-vault/graph.json",
+   "site_url": "https://najongs.github.io/knowledge-vault"
+  }
+ ]
+}
